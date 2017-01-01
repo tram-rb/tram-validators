@@ -28,6 +28,7 @@ module Evil
             .to_sym
     end
 
+    require_relative "validators/consistency_validator"
     require_relative "validators/contract_validator"
     require_relative "validators/size_validator"
     require_relative "validators/validity_validator"

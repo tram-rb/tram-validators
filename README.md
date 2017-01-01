@@ -12,8 +12,6 @@ gem "evil-validators"
 
 Below is a short review of available validators. Read the [specs][specs] for more details:
 
-[specs]: ./
-
 ### Contract Validator
 
 Checks that a value satisfies a contract, represented by a standalone validator (policy object).
@@ -53,9 +51,21 @@ validates :foo, validity: { original_keys: true }
 validates :foo, validity: { nested_keys: true }
 ```
 
+### Consistency Validator
+
+Compares a value of some attribute to a value of another attribute or method chain.
+Supports all keys from the standard rails [numericality validator][numericality].
+
+```ruby
+# record.foo < record.bar.baz
+# adds error named `less_than_bar_baz` under the key `foo`
+validates :foo, consistency: { less_than: 'bar.baz' }
+```
+
 ### Size Validator
 
-Compares size of array to given value or another attribute
+Compares size of array to given value or another attribute.
+Supports all keys from the standard rails [numericality validator][numericality].
 
 ```ruby
 # record.names.size < 6
@@ -67,4 +77,5 @@ validates :names, size: { less_than: 6 }
 validates :values, size: { equal_to: "parent.names.size" }
 ```
 
-All keys from standard rails [numericality validator][numericality] are supported.
+[specs]: ./spec/evil-validators
+[numericality]: http://guides.rubyonrails.org/active_record_validations.html#numericality
