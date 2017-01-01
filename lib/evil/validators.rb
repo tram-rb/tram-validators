@@ -32,14 +32,14 @@ module Evil
 
       # Extracts nested validators from options
       def validators(attr, options, *blacklist)
-        options.map.with_object([]) do |(key, opts), obj|
+        options.map.with_object({}) do |(key, opts), obj|
           name = key.to_s
 
           next if blacklist.map(&:to_s).include? name
           next if %w(allow_nil if unless on message).include? name
 
           opts = {} unless opts.is_a? Hash
-          obj << find_validator_by_name(name).new(attributes: attr, **opts)
+          obj[key] = find_validator_by_name(name).new(attributes: attr, **opts)
         end
       end
 
