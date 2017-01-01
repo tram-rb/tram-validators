@@ -7,14 +7,8 @@ class ContractValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     return unless options[:policy]
     options[:policy].new(value).tap(&:valid?).errors.messages.each do |key, msg|
-      msg.each { |message| record.errors.add name(attribute, key), message }
+      error_key = Evil::Validators.error_key(key, attribute, options)
+      msg.each { |message| record.errors.add error_key, message }
     end
-  end
-
-  private
-
-  def name(attribute, key)
-    return "#{attribute}[#{key}]" if options[:nested_keys]
-    options[:original_keys] ? key : attribute
   end
 end
