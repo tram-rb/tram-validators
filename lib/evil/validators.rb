@@ -56,6 +56,7 @@ module Evil
     require_relative "validators/consistency_validator"
     require_relative "validators/contract_validator"
     require_relative "validators/each_validator"
+    require_relative "validators/outcome_validator"
     require_relative "validators/size_validator"
     require_relative "validators/validity_validator"
   end

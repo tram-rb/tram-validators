@@ -61,6 +61,18 @@ Applies validation rule to every element of the collection (that responds to `to
 validates :list, each: { presence: true }
 ```
 
+### Outcome Validator
+
+Validates value by checking another method depending on it.
+
+```ruby
+# Validates `user_id` by checking that `user.role` (depending on user_id) is set
+# adds error `user_role_presence` to the original attribute  `user_id`
+validates :user_id, outcome: { value: 'user.role', presence: true }
+```
+
+This technics is useful in form objects where you should attach errors to the original fields accessible to the user.
+
 ### Consistency Validator
 
 Compares a value of some attribute to a value of another attribute or method chain.
