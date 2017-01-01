@@ -51,6 +51,16 @@ validates :foo, validity: { original_keys: true }
 validates :foo, validity: { nested_keys: true }
 ```
 
+### Each Validator
+
+Applies validation rule to every element of the collection (that responds to `to_a`).
+
+```ruby
+# Checks that every element of record.list is present
+# collects original errors under the key `list[i]` (i for index of invalid item)
+validates :list, each: { presence: true }
+```
+
 ### Consistency Validator
 
 Compares a value of some attribute to a value of another attribute or method chain.
