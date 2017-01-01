@@ -5,18 +5,11 @@
 #   validates :values, size: { equal_to: :names }
 #
 class SizeValidator < ActiveModel::EachValidator
-  CONDITIONS = {
-    equal_to:                 ->(size, limit) { size == limit },
-    other_than:               ->(size, limit) { size != limit },
-    less_than:                ->(size, limit) { size <  limit },
-    less_than_or_equal_to:    ->(size, limit) { size <= limit },
-    greater_than:             ->(size, limit) { size >  limit },
-    greater_than_or_equal_to: ->(size, limit) { size >= limit }
-  }.freeze
-
   def validate_each(record, attribute, value)
     size = value.size if value.is_a? Array
-    CONDITIONS.each { |key, block| check(key, record, attribute, size, &block) }
+    Evil::Validators::CONDITIONS.each do |key, block|
+      check(key, record, attribute, size, &block)
+    end
   end
 
   private
