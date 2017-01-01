@@ -1,5 +1,4 @@
 require "pry"
-require "rspec/its"
 require "evil-validators"
 
 require_relative "support/invalid_with_error"

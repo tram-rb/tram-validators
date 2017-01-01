@@ -1,6 +1,15 @@
 # Evil::Validators
 
-Collection of ActiveModel validators for rails projects, designed to support policy objects, forms, and other types of standalone validators, that could reuse each other.
+Collection of ActiveModel validators for rails projects.
+The validators are designed to support policy objects, forms, and other types of standalone validators reusing each other.
+
+<a href="https://evilmartians.com/">
+<img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54"></a>
+
+[![Gem Version][gem-badger]][gem]
+[![Build Status][travis-badger]][travis]
+[![Dependency Status][gemnasium-badger]][gemnasium]
+[![Code Climate][codeclimate-badger]][codeclimate]
 
 ## Installation
 
@@ -99,5 +108,28 @@ validates :names, size: { less_than: 6 }
 validates :values, size: { equal_to: "parent.names.size" }
 ```
 
+### Reference Validator
+
+This is an AR-dependent validator, that checks an instance can be extracted from database by given key.
+
+```ruby
+# Checks that User.find_by(record.user_key).present?
+validates :user_key, reference: { model: User, find_by: :key }
+```
+
+Like the outcome validator above, it can be useful for validation of form objects.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
 [specs]: ./spec/evil-validators
 [numericality]: http://guides.rubyonrails.org/active_record_validations.html#numericality
+[codeclimate-badger]: https://img.shields.io/codeclimate/github/evilmartians/evil-validators.svg?style=flat
+[codeclimate]: https://codeclimate.com/github/evilmartians/evil-validators
+[gem-badger]: https://img.shields.io/gem/v/evil-validators.svg?style=flat
+[gem]: https://rubygems.org/gems/evil-validators
+[gemnasium-badger]: https://img.shields.io/gemnasium/evilmartians/evil-validators.svg?style=flat
+[gemnasium]: https://gemnasium.com/evilmartians/evil-validators
+[travis-badger]: https://img.shields.io/travis/evilmartians/evil-validators/master.svg?style=flat
+[travis]: https://travis-ci.org/evilmartians/evil-validators
