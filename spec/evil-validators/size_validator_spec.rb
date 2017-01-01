@@ -257,7 +257,8 @@ RSpec.describe SizeValidator do
 
   context "greater_than_or_equal_to attribute" do
     before do
-      Test::Subject.validates :foo, size: { greater_than_or_equal_to: "bar.baz" }
+      Test::Subject.validates :foo,
+                              size: { greater_than_or_equal_to: "bar.baz" }
     end
 
     context "when attribute has size equal to limit" do
