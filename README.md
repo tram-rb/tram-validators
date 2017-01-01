@@ -1,6 +1,6 @@
 # Evil::Validators
 
-Collection of ActiveModel validators for rails projects
+Collection of ActiveModel validators for rails projects, designed to support policy objects, forms, and other types of standalone validators, that could reuse each other.
 
 ## Installation
 
@@ -25,7 +25,7 @@ class PolicyObject < SimpleDelegator
   validates :bar, presence: true
 end
 
-# PolicyObject.new(record.value).valid? == true
+# PolicyObject.new(record.foo).valid? == true
 # collects original error messages from policy under the key `foo`
 validates :foo, contract: { policy: PolicyObject }
 
@@ -34,6 +34,23 @@ validates :foo, contract: { policy: PolicyObject, original_keys: true }
 
 # collects the same messages from policy under nested keys (`foo[bar]`)
 validates :foo, contract: { policy: PolicyObject, nested_keys: true }
+```
+
+### Validity Validator
+
+Checks that a value is valid per se, and collects original error messages under corresponding keys.
+Uses the same syntax for keys as the Contract Validator above.
+
+```ruby
+# record.foo.valid? == true
+# collects original error messages under the key `foo`
+validates :foo, validity: true
+
+# collects the same messages from policy under their original keys (`bar`)
+validates :foo, validity: { original_keys: true }
+
+# collects the same messages from policy under nested keys (`foo[bar]`)
+validates :foo, validity: { nested_keys: true }
 ```
 
 ### Size Validator

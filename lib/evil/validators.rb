@@ -4,6 +4,7 @@ module Evil
   module Validators
     require_relative "validators/contract_validator"
     require_relative "validators/size_validator"
+    require_relative "validators/validity_validator"
 
     def self.error_key(source, target, nested_keys: nil, original_keys: nil, **)
       return source if     original_keys
