@@ -1,7 +1,7 @@
 require "active_model"
 require "active_support/inflector"
 
-module Evil
+module Tram
   module Validators
     # Standard conditions to check
     CONDITIONS = {

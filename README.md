@@ -1,7 +1,6 @@
-# Evil::Validators
+# Tram::Validators
 
-Collection of ActiveModel validators for rails projects.
-The validators are designed to support policy objects, forms, and other types of standalone validators reusing each other.
+Collection of ActiveModel validators for rails projects with focus on composition of standalone policy objects.
 
 <a href="https://evilmartians.com/">
 <img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54"></a>
@@ -14,7 +13,7 @@ The validators are designed to support policy objects, forms, and other types of
 ## Installation
 
 ```ruby
-gem "evil-validators"
+gem "tram-validators"
 ```
 
 ## Usage
@@ -45,8 +44,8 @@ validates :foo, contract: { policy: PolicyObject, nested_keys: true }
 
 ### Validity Validator
 
-Checks that a value is valid per se, and collects original error messages under corresponding keys.
-Uses the same syntax for keys as the Contract Validator above.
+Checks that an attribute is valid per se.
+It collects original error messages under corresponding keys.
 
 ```ruby
 # record.foo.valid? == true
@@ -77,7 +76,7 @@ Validates value by checking another method depending on it.
 ```ruby
 # Validates `user_id` by checking that `user.role` (depending on user_id) is set
 # adds error `user_role_presence` to the original attribute  `user_id`
-validates :user_id, outcome: { value: 'user.role', presence: true }
+validates :user_id, outcome: { value: "user.role", presence: true }
 ```
 
 This technics is useful in form objects where you should attach errors to the original fields accessible to the user.
@@ -90,7 +89,7 @@ Supports all keys from the standard rails [numericality validator][numericality]
 ```ruby
 # record.foo < record.bar.baz
 # adds error named `less_than_bar_baz` under the key `foo`
-validates :foo, consistency: { less_than: 'bar.baz' }
+validates :foo, consistency: { less_than: "bar.baz" }
 ```
 
 ### Size Validator
@@ -123,13 +122,13 @@ Like the outcome validator above, it can be useful for validation of form object
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
-[specs]: ./spec/evil-validators
+[specs]: ./spec/tram-validators
 [numericality]: http://guides.rubyonrails.org/active_record_validations.html#numericality
-[codeclimate-badger]: https://img.shields.io/codeclimate/github/evilmartians/evil-validators.svg?style=flat
-[codeclimate]: https://codeclimate.com/github/evilmartians/evil-validators
-[gem-badger]: https://img.shields.io/gem/v/evil-validators.svg?style=flat
-[gem]: https://rubygems.org/gems/evil-validators
-[gemnasium-badger]: https://img.shields.io/gemnasium/evilmartians/evil-validators.svg?style=flat
-[gemnasium]: https://gemnasium.com/evilmartians/evil-validators
-[travis-badger]: https://img.shields.io/travis/evilmartians/evil-validators/master.svg?style=flat
-[travis]: https://travis-ci.org/evilmartians/evil-validators
+[codeclimate-badger]: https://img.shields.io/codeclimate/github/trammartians/tram-validators.svg?style=flat
+[codeclimate]: https://codeclimate.com/github/trammartians/tram-validators
+[gem-badger]: https://img.shields.io/gem/v/tram-validators.svg?style=flat
+[gem]: https://rubygems.org/gems/tram-validators
+[gemnasium-badger]: https://img.shields.io/gemnasium/trammartians/tram-validators.svg?style=flat
+[gemnasium]: https://gemnasium.com/trammartians/tram-validators
+[travis-badger]: https://img.shields.io/travis/trammartians/tram-validators/master.svg?style=flat
+[travis]: https://travis-ci.org/trammartians/tram-validators

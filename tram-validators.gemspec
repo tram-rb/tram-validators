@@ -1,9 +1,9 @@
 Gem::Specification.new do |gem|
-  gem.name     = "evil-validators"
+  gem.name     = "tram-validators"
   gem.version  = "0.0.1"
   gem.author   = "Andrew Kozin (nepalez)"
   gem.email    = "andrew.kozin@gmail.com"
-  gem.homepage = "https://github.com/evilmartians/evil-validators"
+  gem.homepage = "https://github.com/trammartians/tram-validators"
   gem.summary  = "Collection of validators for Rails projects"
   gem.license  = "MIT"
 
@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = ">= 2.3"
 
-  gem.add_runtime_dependency "rails", "~> 5.0"
+  gem.add_runtime_dependency "rails", "> 4", "< 6"
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec", "~> 3.0"

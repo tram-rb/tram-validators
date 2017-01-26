@@ -13,8 +13,8 @@
 class OutcomeValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     dependency = options[:value].to_s.gsub(".", "_")
-    dependent  = Evil::Validators.chained_value(record, options[:value])
-    validators = Evil::Validators.validators(@attributes, options, :value)
+    dependent  = Tram::Validators.chained_value(record, options[:value])
+    validators = Tram::Validators.validators(@attributes, options, :value)
 
     sandbox = record.dup
     validators.each do |condition, validator|

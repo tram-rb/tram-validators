@@ -1,5 +1,5 @@
 require "pry"
-require "evil-validators"
+require "tram-validators"
 
 require_relative "support/invalid_with_error"
 

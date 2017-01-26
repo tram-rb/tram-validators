@@ -13,10 +13,15 @@
 #
 class ValidityValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    return if value.valid?
-    value.errors.messages.each do |key, messages|
-      error_key = Evil::Validators.error_key(key, attribute, options)
-      messages.each { |message| record.errors.add error_key, message }
+    if !value.respond_to? :invalid?
+      record.errors.add attribute, :invalidable, record:    record,
+                                                 attribute: attribute,
+                                                 value:     value
+    elsif value.invalid?
+      value.errors.messages.each do |key, messages|
+        error_key = Tram::Validators.error_key(key, attribute, options)
+        messages.each { |message| record.errors.add error_key, message }
+      end
     end
   end
 end

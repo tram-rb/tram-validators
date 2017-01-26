@@ -6,7 +6,7 @@
 #
 class ConsistencyValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    Evil::Validators::CONDITIONS.each do |key, block|
+    Tram::Validators::CONDITIONS.each do |key, block|
       check(key, record, attribute, value, &block)
     end
   end
@@ -17,7 +17,7 @@ class ConsistencyValidator < ActiveModel::EachValidator
     chain = options[condition]
     return if chain.blank?
 
-    other_value = Evil::Validators.chained_value(record, chain)
+    other_value = Tram::Validators.chained_value(record, chain)
     return if value && other_value && yield(value, other_value)
 
     error_name = [condition, chain.to_s.split(".")].flatten.join("_").to_sym
