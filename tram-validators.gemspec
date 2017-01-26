@@ -3,7 +3,7 @@ Gem::Specification.new do |gem|
   gem.version  = "0.0.1"
   gem.author   = "Andrew Kozin (nepalez)"
   gem.email    = "andrew.kozin@gmail.com"
-  gem.homepage = "https://github.com/trammartians/tram-validators"
+  gem.homepage = "https://github.com/tram-rb/tram-validators"
   gem.summary  = "Collection of validators for Rails projects"
   gem.license  = "MIT"
 

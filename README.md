@@ -124,11 +124,11 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 [specs]: ./spec/tram-validators
 [numericality]: http://guides.rubyonrails.org/active_record_validations.html#numericality
-[codeclimate-badger]: https://img.shields.io/codeclimate/github/trammartians/tram-validators.svg?style=flat
-[codeclimate]: https://codeclimate.com/github/trammartians/tram-validators
+[codeclimate-badger]: https://img.shields.io/codeclimate/github/tram-rb/tram-validators.svg?style=flat
+[codeclimate]: https://codeclimate.com/github/tram-rb/tram-validators
 [gem-badger]: https://img.shields.io/gem/v/tram-validators.svg?style=flat
 [gem]: https://rubygems.org/gems/tram-validators
-[gemnasium-badger]: https://img.shields.io/gemnasium/trammartians/tram-validators.svg?style=flat
-[gemnasium]: https://gemnasium.com/trammartians/tram-validators
-[travis-badger]: https://img.shields.io/travis/trammartians/tram-validators/master.svg?style=flat
-[travis]: https://travis-ci.org/trammartians/tram-validators
+[gemnasium-badger]: https://img.shields.io/gemnasium/tram-rb/tram-validators.svg?style=flat
+[gemnasium]: https://gemnasium.com/tram-rb/tram-validators
+[travis-badger]: https://img.shields.io/travis/tram-rb/tram-validators/master.svg?style=flat
+[travis]: https://travis-ci.org/tram-rb/tram-validators
