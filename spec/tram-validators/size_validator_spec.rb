@@ -29,8 +29,8 @@ RSpec.describe SizeValidator do
       it { is_expected.to be_invalid_with_error :foo, :size_equal_to }
     end
 
-    context "when attribute is not an array" do
-      let(:foo) { 1 }
+    context "when attribute has no size" do
+      let(:foo) { double }
       it { is_expected.to be_invalid_with_error :foo, :size_equal_to }
     end
   end
@@ -53,8 +53,8 @@ RSpec.describe SizeValidator do
       it { is_expected.to be_valid }
     end
 
-    context "when attribute is not an array" do
-      let(:foo) { 1 }
+    context "when attribute has no size" do
+      let(:foo) { double }
       it { is_expected.to be_invalid_with_error :foo, :size_other_than }
     end
   end
@@ -77,8 +77,8 @@ RSpec.describe SizeValidator do
       it { is_expected.to be_valid }
     end
 
-    context "when attribute is not an array" do
-      let(:foo) { 1 }
+    context "when attribute has no size" do
+      let(:foo) { double }
       it { is_expected.to be_invalid_with_error :foo, :size_greater_than }
     end
   end
@@ -106,8 +106,8 @@ RSpec.describe SizeValidator do
       it { is_expected.to be_valid }
     end
 
-    context "when attribute is not an array" do
-      let(:foo) { 1 }
+    context "when attribute has no size" do
+      let(:foo) { double }
       it do
         is_expected
           .to be_invalid_with_error :foo, :size_greater_than_or_equal_to
@@ -133,8 +133,8 @@ RSpec.describe SizeValidator do
       it { is_expected.to be_invalid_with_error :foo, :size_less_than }
     end
 
-    context "when attribute is not an array" do
-      let(:foo) { 1 }
+    context "when attribute has no size" do
+      let(:foo) { double }
       it { is_expected.to be_invalid_with_error :foo, :size_less_than }
     end
   end
@@ -159,8 +159,8 @@ RSpec.describe SizeValidator do
       end
     end
 
-    context "when attribute is not an array" do
-      let(:foo) { 1 }
+    context "when attribute has no size" do
+      let(:foo) { double }
       it do
         is_expected.to be_invalid_with_error :foo, :size_less_than_or_equal_to
       end
@@ -189,8 +189,8 @@ RSpec.describe SizeValidator do
       end
     end
 
-    context "when attribute is not an array" do
-      let(:foo) { 1 }
+    context "when attribute has no size" do
+      let(:foo) { double }
       it do
         is_expected.to be_invalid_with_error :foo, :size_equal_to_bar_baz
       end
@@ -217,8 +217,8 @@ RSpec.describe SizeValidator do
       it { is_expected.to be_valid }
     end
 
-    context "when attribute is not an array" do
-      let(:foo) { 1 }
+    context "when attribute has no size" do
+      let(:foo) { double }
       it do
         is_expected.to be_invalid_with_error :foo, :size_other_than_bar_baz
       end
@@ -247,8 +247,8 @@ RSpec.describe SizeValidator do
       it { is_expected.to be_valid }
     end
 
-    context "when attribute is not an array" do
-      let(:foo) { 1 }
+    context "when attribute has no size" do
+      let(:foo) { double }
       it do
         is_expected.to be_invalid_with_error :foo, :size_greater_than_bar_baz
       end
@@ -280,8 +280,8 @@ RSpec.describe SizeValidator do
       it { is_expected.to be_valid }
     end
 
-    context "when attribute is not an array" do
-      let(:foo) { 1 }
+    context "when attribute has no size" do
+      let(:foo) { double }
       it do
         is_expected
           .to be_invalid_with_error :foo, :size_greater_than_or_equal_to_bar_baz
@@ -307,8 +307,8 @@ RSpec.describe SizeValidator do
       it { is_expected.to be_invalid_with_error :foo, :size_less_than_bar_baz }
     end
 
-    context "when attribute is not an array" do
-      let(:foo) { 1 }
+    context "when attribute has no size" do
+      let(:foo) { double }
       it { is_expected.to be_invalid_with_error :foo, :size_less_than_bar_baz }
     end
   end
@@ -336,8 +336,8 @@ RSpec.describe SizeValidator do
       end
     end
 
-    context "when attribute is not an array" do
-      let(:foo) { 1 }
+    context "when attribute has no size" do
+      let(:foo) { double }
       it do
         is_expected.to be_invalid_with_error \
           :foo, :size_less_than_or_equal_to_bar_baz

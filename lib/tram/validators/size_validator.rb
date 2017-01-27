@@ -6,7 +6,7 @@
 #
 class SizeValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    size = value.size if value.is_a? Array
+    size = value.size if value.respond_to? :size
     Tram::Validators::CONDITIONS.each do |key, block|
       check(key, record, attribute, size, &block)
     end
