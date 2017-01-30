@@ -11,7 +11,7 @@ class ContractValidator < ActiveModel::EachValidator
     source = policy.new(value)
     return if source.valid?
 
-    key = "contract_#{policy.name.underscore}"
+    key = :"contract_#{policy.name.underscore}"
     Tram::Validators.copy_errors(source, record, attribute, key, value, options)
   end
 end
