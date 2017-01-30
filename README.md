@@ -26,21 +26,27 @@ Checks that a value satisfies a contract, represented by a standalone validator 
 It applies policy validator, and collects its messages under corresponding keys.
 
 ```ruby
-class PolicyObject < SimpleDelegator
+require "tram-validators" # defines `validity` validator
+
+class SpecificPolicy < SimpleDelegator
   include ActiveModel::Validations
   validates :bar, presence: true
+  validates :itself, validity: true # validates wrapped object per se
 end
 
 # PolicyObject.new(record.foo).valid? == true
-# collects original error messages from policy under the key `foo`
-validates :foo, contract: { policy: PolicyObject }
+# adds message with i18 translation `foo.contract_specific_policy`
+validates :foo, contract: { policy: SpecificPolicy }
 
-# collects the same messages from policy under their original keys (`bar`)
+# collects messages from policy under their original keys (`bar`)
 validates :foo, contract: { policy: PolicyObject, original_keys: true }
 
-# collects the same messages from policy under nested keys (`foo[bar]`)
+# collects messages from policy under nested keys (`foo[bar]`)
 validates :foo, contract: { policy: PolicyObject, nested_keys: true }
 ```
+
+When you use `:nested_keys`, the keys `:base` and `:itself` will be excluded from chain of nesting.
+That's why when `PolicyObject` is invalid at `:itself`, the last definition will collect error under the key `foo`, not the `foo[itself]`.
 
 ### Validity Validator
 
@@ -49,13 +55,13 @@ It collects original error messages under corresponding keys.
 
 ```ruby
 # record.foo.valid? == true
-# collects original error messages under the key `foo`
+# adds message with i18 translation `foo.valid`
 validates :foo, validity: true
 
-# collects the same messages from policy under their original keys (`bar`)
+# collects messages from invalid value under their original keys (`bar`)
 validates :foo, validity: { original_keys: true }
 
-# collects the same messages from policy under nested keys (`foo[bar]`)
+# collects messages from invalid value under nested keys (`foo[bar]`)
 validates :foo, validity: { nested_keys: true }
 ```
 
@@ -65,7 +71,7 @@ Applies validation rule to every element of the collection (that responds to `to
 
 ```ruby
 # Checks that every element of record.list is present
-# collects original errors under the key `list[i]` (i for index of invalid item)
+# collects original errors under keys `list[i]` (i for index of invalid item)
 validates :list, each: { presence: true }
 ```
 

@@ -12,16 +12,12 @@
 #   validates :user, validity: { nested_keys: true }
 #
 class ValidityValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    if !value.respond_to? :invalid?
-      record.errors.add attribute, :invalidable, record:    record,
-                                                 attribute: attribute,
-                                                 value:     value
-    elsif value.invalid?
-      value.errors.messages.each do |key, messages|
-        error_key = Tram::Validators.error_key(key, attribute, options)
-        messages.each { |message| record.errors.add error_key, message }
-      end
+  def validate_each(record, key, value)
+    if !value.respond_to? :valid?
+      record.errors
+            .add attribute, :valid, record: record, attribute: key, value: value
+    elsif !value.valid?
+      Tram::Validators.copy_errors(value, record, key, :valid, value, options)
     end
   end
 end

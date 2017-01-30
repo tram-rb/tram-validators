@@ -19,13 +19,28 @@ module Tram
         chain.to_s.split(".").inject(record) { |obj, name| obj&.send(name) }
       end
 
-      # Provides standard key for error collected by standalone validators
-      def error_key(source, target, nested_keys: nil, original_keys: nil, **)
-        return source if     original_keys
-        return target unless nested_keys
+      # Copies errors from source to target
+      # if either nested or original keys selected
+      def copy_errors(source, target, name, key, value, **opts)
+        nested   = opts[:nested_keys]
+        original = opts[:original_keys]
+
+        if !nested && !original
+          target.errors.add(name, key, record: target, value: value)
+        else
+          source.errors.messages.each do |k, texts|
+            target_key = nested ? nested_key(name, k) : k
+            texts.each { |text| target.errors.add(target_key, text) }
+          end
+        end
+      end
+
+      # Builds nested key
+      def nested_key(target, source)
         source.to_s
               .split(/\[|\]/)
               .compact
+              .reject { |key| %w(base itself).include? key.to_s }
               .inject(target) { |obj, key| "#{obj}[#{key}]" }
               .to_sym
       end

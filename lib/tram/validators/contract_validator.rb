@@ -5,10 +5,13 @@
 #
 class ContractValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    return unless options[:policy]
-    options[:policy].new(value).tap(&:valid?).errors.messages.each do |key, msg|
-      error_key = Tram::Validators.error_key(key, attribute, options)
-      msg.each { |message| record.errors.add error_key, message }
-    end
+    policy = options[:policy]
+    return unless policy
+
+    source = policy.new(value)
+    return if source.valid?
+
+    key = "contract_#{policy.name.underscore}"
+    Tram::Validators.copy_errors(source, record, attribute, key, value, options)
   end
 end

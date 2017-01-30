@@ -5,6 +5,9 @@ AllCops:
   StyleGuideCopsOnly: true
   TargetRubyVersion:  2.3
 
+Metrics/ParameterLists:
+  Max: 6
+
 Style/Alias:
   Enabled: false
 
