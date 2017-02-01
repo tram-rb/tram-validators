@@ -21,6 +21,9 @@ class ConsistencyValidator < ActiveModel::EachValidator
     return if value && other_value && yield(value, other_value)
 
     error_name = [condition, chain.to_s.split(".")].flatten.join("_").to_sym
-    record.errors.add attribute, error_name, value: value, other: other_value
+    record.errors.add attribute, error_name, model: record,
+                                             attribute: attribute,
+                                             value: value,
+                                             other: other_value
   end
 end

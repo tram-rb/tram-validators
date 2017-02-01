@@ -1,0 +1,13 @@
+---
+ru:
+  errors:
+    messages:
+      invalid: "имеет некорректное значение"
+      not_validatable: "не может быть проверен"
+      not_found: "не соответствует объекту класса %{klass} с идентификатором %{key}: %{value}"
+      size_equal_to: "имеет размер %{size} отличный от %{limit}"
+      size_other_than: "имеет размер равный %{limit}"
+      size_greater_than: "имеет размер %{size} не превышающий %{limit}"
+      size_greater_than_or_equal_to: "имеет размер %{size} меньший %{limit}"
+      size_less_than: "имеет размер %{size} не меньший %{limit}"
+      size_less_than_or_equal_to: "имеет размер %{size} превышающий %{limit}"

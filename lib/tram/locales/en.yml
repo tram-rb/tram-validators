@@ -1,0 +1,12 @@
+---
+en:
+  errors:
+    messages:
+      not_validatable: "cannot be validated"
+      not_found: "refers to no record of %{klass} by %{key}: %{value}"
+      size_equal_to: "has size %{size} other than %{limit}"
+      size_other_than: "has size equal to %{limit}"
+      size_greater_than: "has size %{size} which isn't greater than %{limit}"
+      size_greater_than_or_equal_to: "has size %{size} which is less than %{limit}"
+      size_less_than: "has size %{size} which isn't less than %{limit}"
+      size_less_than_or_equal_to: "has size %{size} which is greater than %{limit}"

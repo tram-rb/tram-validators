@@ -14,10 +14,11 @@
 class ValidityValidator < ActiveModel::EachValidator
   def validate_each(record, key, value)
     if !value.respond_to? :valid?
-      record.errors
-            .add attribute, :valid, record: record, attribute: key, value: value
+      record.errors.add attribute, :not_validatable, model: record,
+                                                     attribute: key,
+                                                     value: value
     elsif !value.valid?
-      Tram::Validators.copy_errors(value, record, key, :valid, value, options)
+      Tram::Validators.copy_errors(value, record, key, :invalid, value, options)
     end
   end
 end

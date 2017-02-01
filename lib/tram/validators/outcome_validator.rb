@@ -41,7 +41,7 @@ class OutcomeValidator < ActiveModel::EachValidator
   def message(record, attribute, value, dependent, message_key)
     model = record.class.name.underscore
     scope = %W(active_model errors models #{model} attributes #{attribute})
-    I18n.t message_key, record:      record,
+    I18n.t message_key, model:      record,
                         attribute:   attribute,
                         value:       value,
                         delependent: dependent,

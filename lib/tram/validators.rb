@@ -77,3 +77,7 @@ module Tram
     require_relative "validators/validity_validator"
   end
 end
+
+Dir["#{File.dirname(__FILE__)}/locales/*.yml}"].each do |file|
+  I18n.load_path << file
+end
