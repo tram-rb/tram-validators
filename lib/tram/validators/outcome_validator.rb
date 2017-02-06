@@ -11,6 +11,7 @@
 #   # user_id.user_name_presence
 #
 class OutcomeValidator < ActiveModel::EachValidator
+  # rubocop: disable Metrics/MethodLength
   def validate_each(record, attribute, value)
     dependency = options[:value].to_s.gsub(".", "_")
     dependent  = Tram::Validators.chained_value(record, options[:value])
@@ -27,6 +28,7 @@ class OutcomeValidator < ActiveModel::EachValidator
                                         delependent: dependent
     end
   end
+  # rubocop: enable Metrics/MethodLength
 
   private
 
