@@ -1,3 +1,10 @@
+# v0.0.5 (2017-02-06)
+
+## Bug fixes
+- Error messages from outcom validators (nepalez)
+
+[Compare v0.0.4...v0.0.5](https://github.com/tram-rb/tram-validators/compare/v0.0.4...v0.0.5)
+
 # v0.0.4 (2017-01-30)
 
 ## Bug fixes
