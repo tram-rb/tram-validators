@@ -20,9 +20,11 @@ class OutcomeValidator < ActiveModel::EachValidator
     validators.each do |condition, validator|
       next if valid_in_sandbox(sandbox, attribute, dependent, validator)
 
-      key  = message_key(dependency, condition)
-      text = message(record, attribute, value, dependent, key)
-      record.errors.add attribute, text
+      key = message_key(dependency, condition)
+      record.errors.add attribute, key, model:       record,
+                                        attribute:   attribute,
+                                        value:       value,
+                                        delependent: dependent
     end
   end
 
@@ -36,15 +38,5 @@ class OutcomeValidator < ActiveModel::EachValidator
 
   def message_key(dependency, condition)
     [dependency, condition.to_s].compact.join("_").to_sym
-  end
-
-  def message(record, attribute, value, dependent, message_key)
-    model = record.class.name.underscore
-    scope = %W(active_model errors models #{model} attributes #{attribute})
-    I18n.t message_key, model:      record,
-                        attribute:   attribute,
-                        value:       value,
-                        delependent: dependent,
-                        scope:       scope
   end
 end
